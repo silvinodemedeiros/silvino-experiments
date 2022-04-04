@@ -1,0 +1,12 @@
+p {
+  font-family: Lato;
+}
+
+.wrapper {
+  width: 30rem;
+  height: 97vh;
+  border: 1px solid dodgerblue;
+  border-radius: 4px;
+  background: dodgerblue;
+  cursor: pointer;
+}

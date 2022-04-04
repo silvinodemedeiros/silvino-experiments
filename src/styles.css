@@ -1,0 +1,12 @@
+/* Add application styles & imports to this file! */
+
+body {
+  background: rgb(66, 121, 177);
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

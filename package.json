@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@angular": "*",
     "@angular/animations": "^13.3.1",
     "@angular/cdk": "^13.3.2",
     "@angular/cli": "^13.3.1",

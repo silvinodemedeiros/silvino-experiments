@@ -21,18 +21,21 @@ p {
   background: darkslategrey;
 }
 
+.magical-button {
+  transition: all 1s 0 ease-in-out;
+}
+
 .magical-button:link, .magical-button:visited {
   position: relative;
   top: -.25rem;
   left: 0;
-  padding: 1rem 1rem 1rem 3rem;
+  padding: 1rem;
   cursor: pointer;
   color: white;
   background: slategray;
   border-radius: 4px;
   text-decoration: none;
   box-shadow: 0px 5px 10px 0 black;
-  transition: all 1s 0 ease-in-out;
   font-family: monospace;
   text-transform: uppercase;
 }
@@ -42,4 +45,8 @@ p {
   background: rgb(93, 107, 122);
   color: lightgrey;
   box-shadow: none;
+}
+
+mat-icon {
+  color: white;
 }

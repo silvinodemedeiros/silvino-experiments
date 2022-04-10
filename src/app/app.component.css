@@ -6,9 +6,8 @@ p {
   position: relative;
   width: 30rem;
   height: 97vh;
-  border: 1px solid black;
   border-radius: 4px;
-  background: dodgerblue;
+  background: rgb(212, 233, 255);
   overflow: hidden;
 }
 
@@ -25,9 +24,10 @@ p {
   transition: all 1s 0 ease-in-out;
 }
 
-.magical-button:link, .magical-button:visited {
+.magical-button:link,
+.magical-button:visited {
   position: relative;
-  top: -.25rem;
+  top: -0.25rem;
   left: 0;
   padding: 1rem;
   cursor: pointer;

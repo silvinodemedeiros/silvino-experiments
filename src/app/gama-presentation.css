@@ -1,0 +1,8 @@
+.wrapper {
+  position: relative;
+  width: 30rem;
+  height: 97vh;
+  border-radius: 4px;
+  background: rgb(212, 233, 255);
+  overflow: hidden;
+}

@@ -1,8 +1,88 @@
-.wrapper {
-  position: relative;
-  width: 30rem;
-  height: 97vh;
+.presentation-grid {
+  display: grid;
+  grid-template-rows: 1fr repeat(2, 3rem);
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'content content'
+    'padding container-margin'
+    'border border';
+  grid-gap: 1rem;
+}
+
+.action > button {
+  width: 100%;
+  height: 100%;
+  font-size: 1.25rem;
+  color: darkslategrey;
+}
+
+.padding button.active,
+.border button.active,
+.container-margin button.active {
+  color: white;
+}
+
+.content {
+  grid-area: content;
+  padding: 1rem;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  color: rgb(81, 81, 189);
+  background: #b3d9ff;
+  border: 1px dashed rgb(131, 131, 184);
+}
+
+.content.no-padding,
+.content.no-padding * {
+  padding: 0;
+}
+
+.content.no-margin,
+.content.no-margin * {
+  margin: 0;
+}
+
+.content.no-border,
+.content.no-border * {
+  border: none;
+}
+
+.content-body {
+  margin: 1rem 0 0 0;
+}
+
+.content-social {
+  width: 3.5rem;
+  height: auto;
+  margin: 0 1rem 0 0;
+  padding: 1rem 1rem 0.5rem 1rem;
+  border: 1px solid rgb(138, 191, 245);
   border-radius: 4px;
-  background: rgb(212, 233, 255);
-  overflow: hidden;
+  float: left;
+}
+
+.content-actions {
+  margin: 0 0 1rem 0;
+  opacity: 0.7;
+}
+
+.content-actions:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.content p {
+  line-height: 1.5rem;
+}
+
+.padding {
+  grid-area: padding;
+}
+
+.container-margin {
+  grid-area: container-margin;
+}
+
+.border {
+  grid-area: border;
 }

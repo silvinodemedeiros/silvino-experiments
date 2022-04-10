@@ -1,6 +1,10 @@
 /* Add application styles & imports to this file! */
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  font-family: Roboto;
+}
 
 body {
   background: rgb(177, 216, 255);
@@ -11,4 +15,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.wrapper {
+  position: relative;
+  width: 30rem;
+  height: 85vh;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 4px;
+  background: rgb(212, 233, 255);
+  overflow: hidden;
 }

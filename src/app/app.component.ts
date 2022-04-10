@@ -31,16 +31,15 @@ export class AppComponent implements OnInit {
     this.indicatorValue = x;
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     concat(
-      timer(3000).pipe(tap(() => this.screenStage = 2)),
-      timer(2000).pipe(tap(() => this.indicatorValue = 4)),
-      timer(2000).pipe(tap(() => this.indicatorValue = 3)),
-      timer(2000).pipe(tap(() => this.indicatorValue = 2)),
-      timer(2000).pipe(tap(() => this.indicatorValue = 1))
+      timer(3000).pipe(tap(() => (this.screenStage = 2))),
+      timer(2000).pipe(tap(() => (this.indicatorValue = 4))),
+      timer(2000).pipe(tap(() => (this.indicatorValue = 3))),
+      timer(2000).pipe(tap(() => (this.indicatorValue = 2))),
+      timer(2000).pipe(tap(() => (this.indicatorValue = 1)))
     ).subscribe();
   }
 }

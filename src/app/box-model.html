@@ -1,31 +1,32 @@
-<div class="wrapper flex-column-center">
-
-  <ng-container>
-    <div class="indicator" *ngIf="indicatorValue == 1"></div>
-    <div class="padding-container flex-column-center">
-      <div class="indicator" *ngIf="indicatorValue == 2"></div>
-      <div class="border-container flex-column-center">
-        <div class="indicator" *ngIf="indicatorValue == 3"></div>
-        <div class="content-container">
-          <div class="indicator" *ngIf="indicatorValue == 4"></div>
-          <span>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
-          </span>
-        </div>
+<div
+[ngClass]="{
+  'wrapper': true,
+  'flex-column-center': true,
+  'stage-two': screenStage == 2
+}"
+>
+  <div class="indicator" *ngIf="indicatorValue == 1"></div>
+  <div class="padding-container flex-column-center">
+    <div class="indicator" *ngIf="indicatorValue == 2"></div>
+    <div class="border-container flex-column-center">
+      <div class="indicator" *ngIf="indicatorValue == 3"></div>
+      <div class="content-container">
+        <div class="indicator" *ngIf="indicatorValue == 4"></div>
+        <span>
+          Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+        </span>
       </div>
     </div>
-  </ng-container>
-
-  <div
-    [ngClass]="{
-      'box-example': true,
-      'stage-two': screenStage == 2
-    }"
-  >
-    <div class="content-example">
-      Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
-    </div>
   </div>
+</div>
 
-
+<div
+  [ngClass]="{
+    'box-example': true,
+    'stage-two': screenStage == 2
+  }"
+>
+  <div class="content-example">
+    Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+  </div>
 </div>

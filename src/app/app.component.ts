@@ -15,7 +15,7 @@ import {
   timer,
   interval,
 } from 'rxjs';
-import { mergeWith, switchMap, takeUntil } from 'rxjs/operators';
+import { mergeWith, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -42,17 +42,16 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     this.mouseHold$ = mouseDown$.pipe(
-      switchMap(() => interval(25).pipe(takeUntil(deactivate$)))
+      switchMap(() => interval(10).pipe(
+        takeUntil(deactivate$)
+      ))
     );
 
     this.sub.add(
-      this.mouseHold$.subscribe(
-        (val) => {
-          this.spinnerValue$.next(val);
-        }
-      )
+      this.mouseHold$.subscribe((val) => {
+        this.spinnerValue$.next(val);
+      })
     );
-
   }
 
   ngOnDestroy() {

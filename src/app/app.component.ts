@@ -30,6 +30,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   sub = new Subscription();
 
+  todo = [
+    'Componentize button',
+    'Customize size',
+    'Parametrize attributes'
+  ];
+
   constructor() {}
 
   ngOnInit() {}

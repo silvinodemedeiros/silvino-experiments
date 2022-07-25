@@ -5,14 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { MaterialModule } from './material.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    MaterialModule
-  ],
-  declarations: [ AppComponent, HelloComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [CommonModule, BrowserModule, FormsModule, MaterialModule],
+  declarations: [AppComponent, HelloComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

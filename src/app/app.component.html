@@ -1,7 +1,16 @@
 <div class="wrapper">
   <div class="timed-component">
-    <mat-spinner diameter="80" class="timed-spinner"></mat-spinner>
-    <button mat-fab class="timed-button">
+    <mat-spinner
+      mode="determinate"
+      value="{{ spinnerValue$ | async }}"
+      diameter="80"
+      class="timed-spinner"
+    ></mat-spinner>
+    <button
+      #timedButton
+      mat-fab
+      class="timed-button"
+      >
       <mat-icon class="timed-icon">delete</mat-icon>
     </button>
   </div>

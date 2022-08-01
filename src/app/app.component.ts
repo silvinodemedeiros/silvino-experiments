@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
-  changeRate = 50;
+  changeRate = 10;
 
   sub = new Subscription();
 
@@ -53,24 +53,28 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     const button = this.timedButton.nativeElement;
     const mouseEnd$ = fromEvent(button, 'mouseleave').pipe(
       mergeWith(fromEvent(button, 'mouseup')),
-      switchMap(() => interval(this.changeRate).pipe(
-        map((tick) => this.spinnerValue - tick),
-        takeUntil(mouseHold$),
-        takeWhile(() => this.spinnerValue >= 0)
-      ))
+      switchMap(() =>
+        interval(this.changeRate).pipe(
+          map(() => (this.spinnerValue -= 1)),
+          takeUntil(mouseHold$),
+          takeWhile(() => this.spinnerValue >= 0)
+        )
+      )
     );
 
     const mouseHold$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
-      switchMap(() => interval(this.changeRate).pipe(
-        map((tick) => this.spinnerValue + tick),
-        takeUntil(mouseEnd$),
-        takeWhile(() => this.spinnerValue <= 100)
-      ))
+      switchMap(() =>
+        interval(this.changeRate).pipe(
+          map(() => (this.spinnerValue += 1)),
+          takeUntil(mouseEnd$),
+          takeWhile(() => this.spinnerValue <= 100)
+        )
+      )
     );
 
-    const sub = mouseHold$.pipe(
-      mergeWith(mouseEnd$)
-    ).subscribe(val => this.progress = val)
+    const sub = mouseHold$
+      .pipe(mergeWith(mouseEnd$))
+      .subscribe((val) => (this.progress = val));
 
     this.sub.add(sub);
   }

@@ -15,9 +15,9 @@ import {
   timer,
   interval,
 } from 'rxjs';
-import { mergeWith, switchMap, takeUntil } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { takeWhile } from 'rxjs/operators';
+import { mergeWith, switchMap, takeUntil, debounceTime } from 'rxjs';
+import { map } from 'rxjs';
+import { takeWhile } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
-  changeRate = 10;
+  intervalRate = 10;
 
   sub = new Subscription();
 
@@ -54,8 +54,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     const mouseEnd$ = fromEvent(button, 'mouseleave').pipe(
       mergeWith(fromEvent(button, 'mouseup')),
       switchMap(() =>
-        interval(this.changeRate).pipe(
-          map(() => (this.spinnerValue -= 1)),
+        interval(this.intervalRate).pipe(
+          map(() => {
+            return this.spinnerValue - 1 >= 0
+              ? this.spinnerValue -= 1
+              : this.spinnerValue = 0;
+          }),
           takeUntil(mouseHold$),
           takeWhile(() => this.spinnerValue >= 0)
         )
@@ -64,8 +68,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const mouseHold$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
       switchMap(() =>
-        interval(this.changeRate).pipe(
-          map(() => (this.spinnerValue += 1)),
+        interval(this.intervalRate).pipe(
+          map(() => {
+            return this.spinnerValue + 1 <= 100
+              ? this.spinnerValue += 1
+              : this.spinnerValue = 100;
+          }),
           takeUntil(mouseEnd$),
           takeWhile(() => this.spinnerValue <= 100)
         )
@@ -73,8 +81,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     const sub = mouseHold$
-      .pipe(mergeWith(mouseEnd$))
-      .subscribe((val) => (this.progress = val));
+      .pipe(
+        mergeWith(mouseEnd$)
+      ).subscribe((val) => (this.progress = val));
 
     this.sub.add(sub);
   }

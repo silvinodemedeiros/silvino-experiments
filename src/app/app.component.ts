@@ -16,6 +16,8 @@ import {
   interval,
 } from 'rxjs';
 import { mergeWith, switchMap, takeUntil } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'my-app',
@@ -25,9 +27,9 @@ import { mergeWith, switchMap, takeUntil } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('timedButton', { read: ElementRef }) timedButton;
 
+  spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
-  mouseHold$;
-  decreaseRate = 2;
+  changeRate = 50;
 
   sub = new Subscription();
 
@@ -38,36 +40,39 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     'Implement event for when timer reaches 100%',
   ];
 
+  set progress(value) {
+    this.spinnerValue = value;
+    this.spinnerValue$.next(value);
+  }
+
   constructor() {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     const button = this.timedButton.nativeElement;
-    const mouseDown$ = fromEvent<MouseEvent>(button, 'mousedown');
     const mouseEnd$ = fromEvent(button, 'mouseleave').pipe(
-      mergeWith(fromEvent(button, 'mouseup'))
+      mergeWith(fromEvent(button, 'mouseup')),
+      switchMap(() => interval(this.changeRate).pipe(
+        map((tick) => this.spinnerValue - tick),
+        takeUntil(mouseHold$),
+        takeWhile(() => this.spinnerValue >= 0)
+      ))
     );
 
-    this.mouseHold$ = mouseDown$.pipe(
-      switchMap(() => interval(10).pipe(takeUntil(mouseEnd$)))
+    const mouseHold$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
+      switchMap(() => interval(this.changeRate).pipe(
+        map((tick) => this.spinnerValue + tick),
+        takeUntil(mouseEnd$),
+        takeWhile(() => this.spinnerValue <= 100)
+      ))
     );
 
-    this.sub.add(
-      mouseEnd$.subscribe((val: number) => {
-        if (val - this.decreaseRate < this.decreaseRate) {
-          this.spinnerValue$.next((val - this.decreaseRate));
-        } else {
-          this.spinnerValue$.next(0);
-        }
-      })
-    );
+    const sub = mouseHold$.pipe(
+      mergeWith(mouseEnd$)
+    ).subscribe(val => this.progress = val)
 
-    this.sub.add(
-      this.mouseHold$.subscribe((val) => {
-        this.spinnerValue$.next(val);
-      })
-    );
+    this.sub.add(sub);
   }
 
   ngOnDestroy() {

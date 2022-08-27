@@ -6,16 +6,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  BehaviorSubject,
-  concat,
-  forkJoin,
-  fromEvent,
-  Subscription,
-  timer,
-  interval,
-} from 'rxjs';
-import { mergeWith, switchMap, takeUntil, debounceTime } from 'rxjs';
+import { BehaviorSubject, fromEvent, Subscription, interval } from 'rxjs';
+import { mergeWith, switchMap, takeUntil } from 'rxjs';
 import { map } from 'rxjs';
 import { takeWhile } from 'rxjs';
 
@@ -30,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
   intervalRate = 10;
+  progressIncrement = 1;
 
   sub = new Subscription();
 
@@ -56,9 +49,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() => {
-            return this.spinnerValue - 1 >= 0
-              ? this.spinnerValue -= 1
-              : this.spinnerValue = 0;
+            return this.spinnerValue - this.progressIncrement >= 0
+              ? (this.spinnerValue -= this.progressIncrement)
+              : (this.spinnerValue = 0);
           }),
           takeUntil(mouseHold$),
           takeWhile(() => this.spinnerValue >= 0)
@@ -70,9 +63,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() => {
-            return this.spinnerValue + 1 <= 100
-              ? this.spinnerValue += 1
-              : this.spinnerValue = 100;
+            return this.spinnerValue + this.progressIncrement <= 100
+              ? (this.spinnerValue += this.progressIncrement)
+              : (this.spinnerValue = 100);
           }),
           takeUntil(mouseEnd$),
           takeWhile(() => this.spinnerValue <= 100)
@@ -81,9 +74,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     const sub = mouseHold$
-      .pipe(
-        mergeWith(mouseEnd$)
-      ).subscribe((val) => (this.progress = val));
+      .pipe(mergeWith(mouseEnd$))
+      .subscribe((val) => (this.progress = val));
 
     this.sub.add(sub);
   }

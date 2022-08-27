@@ -1,23 +1,25 @@
 <div class="wrapper">
-  <div class="timed-component">
-    <div class="timed-element">
-      <mat-spinner
-        mode="determinate"
-        value="{{ spinnerValue$ | async }}"
-        diameter="80"
-        class="timed-spinner"
-      ></mat-spinner>
+  <div class="timed-component-wrapper">
+    <div class="timed-component">
+      <div class="timed-element">
+        <mat-spinner
+          mode="determinate"
+          value="{{ spinnerValue$ | async }}"
+          diameter="80"
+          class="timed-spinner"
+        ></mat-spinner>
+      </div>
+      <div class="timed-element">
+        <button #timedButton mat-fab class="timed-button">
+          <mat-icon class="timed-icon">delete</mat-icon>
+        </button>
+      </div>
     </div>
-    <div class="timed-element">
-      <button #timedButton mat-fab class="timed-button">
-        <mat-icon class="timed-icon">delete</mat-icon>
-      </button>
-    </div>
+
+    <h1 class="progress-value">{{ spinnerValue$ | async }}%</h1>
   </div>
 
-  <h1>{{ spinnerValue$ | async }}%</h1>
-
-  <h1>To Do</h1>
+  <h1 class="to-do-header">To Do</h1>
   <ul>
     <li *ngFor="let td of todo">{{ td }}</li>
   </ul>

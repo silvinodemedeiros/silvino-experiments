@@ -1,3 +1,10 @@
+.timed-component-wrapper {
+  padding: 0.5rem;
+  border: 1px solid slategrey;
+  display: flex;
+  border-radius: 4px;
+}
+
 .timed-component {
   position: relative;
   width: 80px;
@@ -13,4 +20,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.progress-value {
+  color: darkslategrey;
+  margin-left: 0.5rem;
+  font-weight: lighter;
+}
+
+.to-do-header {
+  text-transform: uppercase;
+  font-size: 1.5rem;
 }

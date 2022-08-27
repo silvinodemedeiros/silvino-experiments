@@ -44,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     const button = this.timedButton.nativeElement;
+
     const mouseEnd$ = fromEvent(button, 'mouseleave').pipe(
       mergeWith(fromEvent(button, 'mouseup')),
       switchMap(() =>
@@ -62,11 +63,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     const mouseHold$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
       switchMap(() =>
         interval(this.intervalRate).pipe(
-          map(() => {
-            return this.spinnerValue + this.progressIncrement <= 100
+          map(() =>
+            this.spinnerValue + this.progressIncrement <= 100
               ? (this.spinnerValue += this.progressIncrement)
-              : (this.spinnerValue = 100);
-          }),
+              : (this.spinnerValue = 100)
+          ),
           takeUntil(mouseEnd$),
           takeWhile(() => this.spinnerValue <= 100)
         )

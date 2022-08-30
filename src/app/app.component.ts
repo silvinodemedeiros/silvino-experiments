@@ -1,3 +1,4 @@
+import { trigger } from '@angular/animations';
 import {
   AfterViewInit,
   Component,
@@ -9,12 +10,15 @@ import {
 import { BehaviorSubject, fromEvent, Subscription, interval } from 'rxjs';
 import { mergeWith, switchMap, takeUntil } from 'rxjs';
 import { map } from 'rxjs';
-import { takeWhile } from 'rxjs';
+import { takeWhile, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('fadeSpinIn', [])
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('timedButton', { read: ElementRef }) timedButton;
@@ -64,19 +68,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() =>
-            this.spinnerValue + this.progressIncrement < 100
+            this.spinnerValue + this.progressIncrement <= 100
               ? (this.spinnerValue += this.progressIncrement)
               : (this.spinnerValue = 100)
           ),
           takeUntil(mouseEnd$),
+          debounceTime(200),
           takeWhile(() => this.spinnerValue <= 100)
         )
       )
     );
 
-    const sub = mouseHold$
-      .pipe(mergeWith(mouseEnd$))
-      .subscribe((val) => (this.progress = val));
+    const sub = mouseHold$.pipe(mergeWith(mouseEnd$)).subscribe((val) => (this.progress = val));
 
     this.sub.add(sub);
   }

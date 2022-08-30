@@ -3,11 +3,17 @@
     <div class="timed-component">
       <div class="timed-element">
         <mat-spinner
+          *ngIf="(spinnerValue$ | async) < 100; else spinnerFinished"
           mode="determinate"
           value="{{ spinnerValue$ | async }}"
           diameter="80"
-          class="timed-spinner"
         ></mat-spinner>
+        <ng-template #spinnerFinished>
+          <mat-spinner
+            mode="indeterminate"
+            diameter="80"
+          ></mat-spinner>
+        </ng-template>
       </div>
       <div class="timed-element">
         <button #timedButton mat-fab class="timed-button">

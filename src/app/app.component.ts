@@ -64,7 +64,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() =>
-            this.spinnerValue + this.progressIncrement <= 100
+            this.spinnerValue + this.progressIncrement < 100
               ? (this.spinnerValue += this.progressIncrement)
               : (this.spinnerValue = 100)
           ),

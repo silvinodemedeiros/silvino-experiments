@@ -8,12 +8,6 @@ import { Component, OnInit, } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  todo = [
-    'Customize size',
-    'Parametrize attributes',
-    'Implement event for when timer reaches 100%',
-  ];
-
   constructor() {}
 
   ngOnInit() {}

@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule
+    ComponentsModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

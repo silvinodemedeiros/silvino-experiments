@@ -1,40 +1,22 @@
-import { trigger } from '@angular/animations';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { BehaviorSubject, fromEvent, Subscription, interval } from 'rxjs';
-import { mergeWith, switchMap, takeUntil } from 'rxjs';
-import { map } from 'rxjs';
-import { takeWhile, debounceTime } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, fromEvent, mergeWith, Subscription, switchMap, interval, map, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  animations: [
-    trigger('fadeSpinIn', [])
-  ]
+  selector: 'app-timed-button',
+  templateUrl: './timed-button.component.html',
+  styleUrls: ['./timed-button.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
+
   @ViewChild('timedButton', { read: ElementRef }) timedButton;
+
+  @Input() intervalRate = 20;
 
   spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
-  intervalRate = 10;
   progressIncrement = 1;
 
   sub = new Subscription();
-
-  todo = [
-    'Customize size',
-    'Parametrize attributes',
-    'Implement event for when timer reaches 100%',
-  ];
 
   set progress(value) {
     this.spinnerValue = value;
@@ -89,4 +71,5 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
+
 }

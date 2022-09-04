@@ -1,0 +1,18 @@
+<div class="timed-component-wrapper">
+<div class="timed-component">
+  <div class="timed-element">
+    <mat-spinner
+      mode="determinate"
+      value="{{ spinnerValue$ | async }}"
+      diameter="80"
+    ></mat-spinner>
+  </div>
+  <div class="timed-element">
+    <button #timedButton mat-fab class="timed-button">
+      <mat-icon class="timed-icon">delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+<h1 class="progress-value">{{ spinnerValue$ | async }}%</h1>
+</div>

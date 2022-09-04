@@ -1,18 +1,45 @@
 <div class="timed-component-wrapper">
-<div class="timed-component">
-  <div class="timed-element">
-    <mat-spinner
-      mode="determinate"
-      value="{{ spinnerValue$ | async }}"
-      diameter="80"
-    ></mat-spinner>
-  </div>
-  <div class="timed-element">
-    <button #timedButton mat-fab class="timed-button">
-      <mat-icon class="timed-icon">delete</mat-icon>
-    </button>
-  </div>
-</div>
 
-<h1 class="progress-value">{{ spinnerValue$ | async }}%</h1>
+
+  <div
+    *ngIf="!(progressComplete$ | async); else progressHasFinished"
+    class="timed-component"
+  >
+    <div class="timed-element">
+      <mat-spinner
+        mode="determinate"
+        value="{{ spinnerValue$ | async }}"
+        diameter="80"
+      ></mat-spinner>
+    </div>
+    <div class="timed-element">
+      <button #timedButton mat-fab class="timed-button">
+        <mat-icon class="timed-icon">play_arrow</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <ng-template #progressHasFinished>
+    <div class="timed-component">
+      <div class="timed-element">
+        <mat-spinner
+          mode="indeterminate"
+          diameter="80"
+        ></mat-spinner>
+      </div>
+      <div class="timed-element">
+        <button mat-fab class="timed-button" [color]="'primary'">
+          <mat-icon class="timed-icon">more_horiz</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <h1 class="progress-value" *ngIf="(spinnerValue$ | async) <= 100; else numericProgressHasFinished">
+    {{ spinnerValue$ | async }}%
+  </h1>
+
+  <ng-template #numericProgressHasFinished>
+    <h1 class="progress-value">100%</h1>
+  </ng-template>
 </div>

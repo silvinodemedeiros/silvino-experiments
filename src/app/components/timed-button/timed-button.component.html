@@ -35,7 +35,7 @@
     </div>
   </ng-template>
 
-  <h1 class="progress-value" *ngIf="(spinnerValue$ | async) <= 100; else numericProgressHasFinished">
+  <h1 class="progress-value" *ngIf="(spinnerValue$ | async) < 100; else numericProgressHasFinished">
     {{ spinnerValue$ | async }}%
   </h1>
 

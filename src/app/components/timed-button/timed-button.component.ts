@@ -10,20 +10,16 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('timedButton', { read: ElementRef }) timedButton;
 
-  @Input() intervalRate = 10;
+  sub = new Subscription();
+
+  @Input() intervalRate = 20;
 
   spinnerValue = 0;
   spinnerValue$ = new BehaviorSubject(0);
-  progressIncrement = 1;
-
-  sub = new Subscription();
+  upperBound = 160;
+  progressIncrement = 2;
 
   progressComplete$ = new BehaviorSubject(false);
-
-  set progress(value) {
-    this.spinnerValue = value;
-    this.spinnerValue$.next(value);
-  }
 
   constructor() {}
 
@@ -37,7 +33,7 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() =>
-            this.spinnerValue - this.progressIncrement >= 0
+            this.spinnerValue - this.progressIncrement > 0
               ? (this.spinnerValue -= this.progressIncrement)
               : (this.spinnerValue = 0)
           ),
@@ -50,20 +46,21 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() =>
-            this.spinnerValue + this.progressIncrement <= 130
+            this.spinnerValue + this.progressIncrement < this.upperBound
               ? (this.spinnerValue += this.progressIncrement)
-              : (this.spinnerValue = 130)
+              : (this.spinnerValue = this.upperBound)
           ),
           takeUntil(mouseEnd$)
         )
       )
     );
 
-    const sub = mouseHold$.pipe(mergeWith(mouseEnd$)).pipe().subscribe(
+    const sub = mouseHold$.pipe(mergeWith(mouseEnd$)).subscribe(
       (val) => {
-        if (val >= 0 && val < 130) {
-          this.progress = val;
-        } else if (val === 130) {
+        if (val >= 0 && val < this.upperBound) {
+          this.spinnerValue = val;
+          this.spinnerValue$.next(val);
+        } else if (val === this.upperBound) {
           this.progressComplete$.next(true)
         }
       }
@@ -74,6 +71,8 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.spinnerValue$.complete();
+    this.progressComplete$.complete();
   }
 
 }

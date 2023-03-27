@@ -23,6 +23,7 @@
   width: 5rem;
   height: 5rem;
   background: blue;
+  color: white;
 }
 
 .widget-item:hover {

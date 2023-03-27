@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drag-and-drop.component.css']
 })
 export class DragAndDropComponent implements OnInit {
+
+  @ViewChild('dropArea') dropArea!: ElementRef;
 
   widgetList = [
     {name: 'A'},
@@ -26,7 +28,7 @@ export class DragAndDropComponent implements OnInit {
   drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+    this.dropArea.nativeElement.appendChild(document.getElementById(data));
   }
 
   constructor() { }

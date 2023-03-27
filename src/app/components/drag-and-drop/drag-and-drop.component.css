@@ -33,5 +33,10 @@
 
 .content {
   grid-area: content;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-content: center;
+  justify-content: center;
+  gap: .5rem;
   background: dodgerblue;
 }

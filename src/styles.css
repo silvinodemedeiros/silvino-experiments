@@ -16,14 +16,3 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-.wrapper {
-  position: relative;
-  width: 80vw;
-  height: 75vh;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-radius: 4px;
-  background: rgb(212, 233, 255);
-  overflow: hidden;
-}

@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="sidebar">
+    <div
+      *ngFor="let wi of widgetList"
+      class="widget-item"
+      draggable="true"
+      [id]="wi.name"
+      (dragstart)="drag($event)"
+    >
+      {{ wi.name }}
+    </div>
+  </div>
+  <div
+    class="content"
+    (dragover)="allowDrop($event)"
+    (drop)="drop($event)"
+  ></div>
+</div>

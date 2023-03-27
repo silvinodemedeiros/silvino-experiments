@@ -1,6 +1,6 @@
+<h2 class="section-header">Progress Button</h2>
+
 <div class="timed-component-wrapper">
-
-
   <div
     *ngIf="!(progressComplete$ | async); else progressHasFinished"
     class="timed-component"
@@ -43,3 +43,8 @@
     <h1 class="progress-value">100%</h1>
   </ng-template>
 </div>
+
+<p class="to-do-header">To Do</p>
+<ul class="to-do-list">
+  <li *ngFor="let td of todo">{{ td }}</li>
+</ul>

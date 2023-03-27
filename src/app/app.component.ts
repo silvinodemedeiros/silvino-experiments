@@ -8,11 +8,6 @@ import { Component, OnInit, } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  todo = [
-    'transition animations (spin + scale down)',
-    'success/error state'
-  ];
-
   constructor() {}
 
   ngOnInit() {}

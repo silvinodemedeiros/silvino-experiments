@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../material.module";
+import { DragAndDropComponent } from "./drag-and-drop/drag-and-drop.component";
 import { TimedButtonComponent } from "./timed-button/timed-button.component";
 
 @NgModule({
@@ -11,10 +12,12 @@ import { TimedButtonComponent } from "./timed-button/timed-button.component";
     MaterialModule
   ],
   declarations: [
-    TimedButtonComponent
+    TimedButtonComponent,
+    DragAndDropComponent
   ],
   exports: [
-    TimedButtonComponent
+    TimedButtonComponent,
+    DragAndDropComponent
   ]
 })
 export class ComponentsModule {}

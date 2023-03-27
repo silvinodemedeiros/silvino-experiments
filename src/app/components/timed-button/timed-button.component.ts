@@ -21,6 +21,11 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
 
   progressComplete$ = new BehaviorSubject(false);
 
+  todo = [
+    'transition animations (spin + scale down)',
+    'success/error state'
+  ];
+
   constructor() {}
 
   ngOnInit() {}

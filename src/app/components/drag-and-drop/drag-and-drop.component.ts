@@ -13,8 +13,7 @@ export class DragAndDropComponent implements OnInit {
     {name: 'A'},
     {name: 'B'},
     {name: 'C'},
-    {name: 'D'},
-    {name: 'E'}
+    {name: 'D'}
   ];
 
   allowDrop(ev) {

@@ -1,7 +1,8 @@
 .wrapper {
   position: relative;
-  width: 80vw;
-  height: 75vh;
+  width: 22rem;
+  height: 25rem;
+  padding: 1rem;
   margin-top: 2rem;
   border-radius: 4px;
   background: rgb(212, 233, 255);

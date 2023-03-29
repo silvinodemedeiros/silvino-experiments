@@ -7,6 +7,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class DragAndDropComponent implements OnInit {
 
+  // TODO: create cell models to render them through ngFor
+
   @ViewChild('dropArea') dropArea!: ElementRef;
 
   widgetList = [

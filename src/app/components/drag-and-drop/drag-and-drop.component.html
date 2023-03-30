@@ -16,8 +16,8 @@
     (dragover)="allowDrop($event)"
     (drop)="drop($event)"
   >
-  <div class="content-cell-1"></div>
-  <div class="content-cell-2"></div>
-  <div class="content-cell-3"></div>
+  <app-grid-cell [content]="'1'" appGridCell [gridArea]="'1 / 1 / 2 / 3'"></app-grid-cell>
+  <app-grid-cell [content]="'2'" appGridCell [gridArea]="'2 / 1 / 3 / 2'"></app-grid-cell>
+  <app-grid-cell [content]="'3'" appGridCell [gridArea]="'2 / 2 / 3 / 3'"></app-grid-cell>
   </div>
 </div>

@@ -9,6 +9,12 @@ export class DragAndDropComponent implements OnInit {
 
   @ViewChild('dropArea') dropArea!: ElementRef;
 
+  grid = [
+    {content: '1', area: '1 / 1 / 2 / 3'},
+    {content: '2', area: '2 / 1 / 3 / 2'},
+    {content: '3', area: '2 / 2 / 3 / 3'}
+  ];
+
   widgetList = [
     {name: 'A'},
     {name: 'B'},

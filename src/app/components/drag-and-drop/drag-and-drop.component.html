@@ -16,8 +16,11 @@
     (dragover)="allowDrop($event)"
     (drop)="drop($event)"
   >
-  <app-grid-cell [content]="'1'" appGridCell [gridArea]="'1 / 1 / 2 / 3'"></app-grid-cell>
-  <app-grid-cell [content]="'2'" appGridCell [gridArea]="'2 / 1 / 3 / 2'"></app-grid-cell>
-  <app-grid-cell [content]="'3'" appGridCell [gridArea]="'2 / 2 / 3 / 3'"></app-grid-cell>
+    <app-grid-cell
+      *ngFor="let cell of grid"
+      appGridCell
+      [gridArea]="cell.area"
+      [content]="cell.content"
+    ></app-grid-cell>
   </div>
 </div>

@@ -12,6 +12,7 @@ export class DragAndDropComponent implements OnInit {
   // drop widgets into cells
 
   @ViewChild('dropArea') dropArea!: ElementRef;
+  currentlyDragging = null;
 
   grid = [
     {content: '1', area: '1 / 1 / 2 / 3'},
@@ -31,13 +32,19 @@ export class DragAndDropComponent implements OnInit {
   }
   
   drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    this.currentlyDragging = ev.target;
   }
   
   drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    this.dropArea.nativeElement.appendChild(document.getElementById(data));
+    const widget = this.currentlyDragging;
+
+    while(ev.target.lastChild) {
+      ev.target.removeChild(ev.target.lastChild);
+    }
+
+    ev.target.appendChild(widget);
+    this.currentlyDragging = null;
   }
 
   constructor() { }

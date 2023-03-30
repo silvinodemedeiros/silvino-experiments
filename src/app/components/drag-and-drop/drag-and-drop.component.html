@@ -13,14 +13,14 @@
   <div
     #dropArea
     class="content"
-    (dragover)="allowDrop($event)"
-    (drop)="drop($event)"
   >
     <app-grid-cell
       *ngFor="let cell of grid"
       appGridCell
       [gridArea]="cell.area"
       [content]="cell.content"
+      (dragover)="allowDrop($event)"
+      (drop)="drop($event)"
     ></app-grid-cell>
   </div>
 </div>

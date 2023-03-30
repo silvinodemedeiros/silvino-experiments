@@ -6,6 +6,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./drag-and-drop.component.css']
 })
 export class DragAndDropComponent implements OnInit {
+  // TODO
+  // multiple grid possibilities
+  // change grid after click
+  // drop widgets into cells
 
   @ViewChild('dropArea') dropArea!: ElementRef;
 

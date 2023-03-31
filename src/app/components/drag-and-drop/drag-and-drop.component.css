@@ -31,7 +31,7 @@
 }
 
 .widget-item {
-  width: 5rem;
+  flex-grow: 1;
   height: 5rem;
 }
 
@@ -61,6 +61,18 @@
 }
 
 .grid-options-item {
+  position: relative;
   flex-grow: 1;
   height: 3rem;
+}
+
+.grid-options-item.active:after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  border: 2px solid red;
+  border-radius: 4px;
 }

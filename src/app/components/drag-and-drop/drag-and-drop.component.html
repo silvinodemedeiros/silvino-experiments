@@ -29,6 +29,11 @@
     <div
       *ngFor="let gridItem of gridOptions"
       class="option-item grid-options-item"
+      [ngClass]="{
+        'option-item': true,
+        'grid-options-item': true,
+        'active': gridItem.id === selectedGridOption.id
+      }"
       (click)="activateGridById(gridItem.id)"
     >
       {{ gridItem.id }}

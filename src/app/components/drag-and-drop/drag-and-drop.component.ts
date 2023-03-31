@@ -7,7 +7,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // multiple grid possibilities DOING
   // change grid after click
   // create cell components
   // implement grid service: will manage cell retrieval and data
@@ -44,6 +43,11 @@ export class DragAndDropComponent implements OnInit {
     {name: 'D'}
   ];
 
+  constructor() { }
+
+  ngOnInit() {
+  }
+
   allowDrop(ev) {
     ev.preventDefault();
   }
@@ -64,9 +68,8 @@ export class DragAndDropComponent implements OnInit {
     this.currentlyDragging = null;
   }
 
-  constructor() { }
-
-  ngOnInit() {
+  activateGridById(nextGridId: number) {
+    this.selectedGridOption = this.gridOptions.filter(({id}) => nextGridId === id)[0];
   }
 
 }

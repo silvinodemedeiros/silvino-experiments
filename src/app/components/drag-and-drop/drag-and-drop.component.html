@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div
       *ngFor="let wi of widgetList"
-      class="widget-item"
+      class="option-item widget-item"
       draggable="true"
       [id]="wi.name"
       (dragstart)="drag($event)"
@@ -26,11 +26,11 @@
   </div>
 
   <div class="grid-options-list">
-    <div class="grid-options-item">I</div>
-    <div class="grid-options-item">II</div>
-    <div class="grid-options-item">III</div>
-    <div class="grid-options-item">IV</div>
-    <div class="grid-options-item">V</div>
-    <div class="grid-options-item">VI</div>
+    <div class="option-item grid-options-item">I</div>
+    <div class="option-item grid-options-item">II</div>
+    <div class="option-item grid-options-item">III</div>
+    <div class="option-item grid-options-item">IV</div>
+    <div class="option-item grid-options-item">V</div>
+    <div class="option-item grid-options-item">VI</div>
   </div>
 </div>

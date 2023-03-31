@@ -9,6 +9,20 @@
   gap: .5rem;
 }
 
+.option-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: blue;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background: darkblue;
+}
+
 .sidebar {
   grid-area: sidebar;
   display: flex;
@@ -17,13 +31,8 @@
 }
 
 .widget-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 5rem;
   height: 5rem;
-  background: blue;
-  color: white;
 }
 
 .widget-item:hover {
@@ -52,11 +61,6 @@
 }
 
 .grid-options-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 3rem;
   height: 3rem;
-  background: blue;
-  color: white;
 }

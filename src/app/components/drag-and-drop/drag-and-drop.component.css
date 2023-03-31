@@ -61,6 +61,6 @@
 }
 
 .grid-options-item {
-  width: 3rem;
+  flex-grow: 1;
   height: 3rem;
 }

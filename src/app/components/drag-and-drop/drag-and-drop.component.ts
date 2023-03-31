@@ -7,18 +7,35 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // multiple grid possibilities
+  // multiple grid possibilities DOING
   // change grid after click
-  // drop widgets into cells
+  // create cell components
+  // implement grid service: will manage cell retrieval and data
+  // create widget components
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
 
-  grid = [
-    {content: '', area: '1 / 1 / 2 / 3'},
-    {content: '', area: '2 / 1 / 3 / 2'},
-    {content: '', area: '2 / 2 / 3 / 3'}
+  gridOptions = [
+    {
+      id: 1,
+      cells: [
+        {content: '', area: '1 / 1 / 2 / 3'},
+        {content: '', area: '2 / 1 / 3 / 2'},
+        {content: '', area: '2 / 2 / 3 / 3'}
+      ]
+    },
+    {
+      id: 2,
+      cells: [
+        {content: '', area: '1 / 1 / 2 / 2'},
+        {content: '', area: '2 / 1 / 3 / 2'},
+        {content: '', area: '1 / 2 / 3 / 3'}
+      ]
+    }
   ];
+
+  selectedGridOption = this.gridOptions[0];
 
   widgetList = [
     {name: 'A'},

@@ -32,7 +32,7 @@
 
 .widget-item {
   flex-grow: 1;
-  height: 5rem;
+  height: 100%;
 }
 
 .widget-item:hover {

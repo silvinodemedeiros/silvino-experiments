@@ -16,7 +16,7 @@
     class="content"
   >
     <app-grid-cell
-      *ngFor="let cell of selectedGridOption.cells"
+      *ngFor="let cell of selectedGrid.cells"
       appGridCell
       [gridArea]="cell.area"
       [content]="cell.content"
@@ -27,16 +27,16 @@
 
   <div class="grid-options-list">
     <div
-      *ngFor="let gridItem of gridOptions"
+      *ngFor="let grid of gridOptions"
       class="option-item grid-options-item"
       [ngClass]="{
         'option-item': true,
         'grid-options-item': true,
-        'active': gridItem.id === selectedGridOption.id
+        'active': grid.id === selectedGrid.id
       }"
-      (click)="activateGridById(gridItem.id)"
+      (click)="selectGridById(grid.id)"
     >
-      {{ gridItem.id }}
+      {{ grid.id }}
     </div>
   </div>
 </div>

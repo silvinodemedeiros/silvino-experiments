@@ -11,6 +11,7 @@ export class DragAndDropComponent implements OnInit {
   // create cell components
   // implement grid service: will manage cell retrieval and data
   // create widget components
+  // hotkeys (letters for grids for example idk)
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
@@ -34,7 +35,7 @@ export class DragAndDropComponent implements OnInit {
     }
   ];
 
-  selectedGridOption = this.gridOptions[0];
+  selectedGrid = this.gridOptions[0];
 
   widgetList = [
     {name: 'A'},
@@ -68,8 +69,8 @@ export class DragAndDropComponent implements OnInit {
     this.currentlyDragging = null;
   }
 
-  activateGridById(nextGridId: number) {
-    this.selectedGridOption = this.gridOptions.filter(({id}) => nextGridId === id)[0];
+  selectGridById(nextGridId: number) {
+    this.selectedGrid = this.gridOptions.filter(({id}) => nextGridId === id)[0];
   }
 
 }

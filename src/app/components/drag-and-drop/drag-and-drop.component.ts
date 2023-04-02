@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
 import { GridService } from './services/grid.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { GridService } from './services/grid.service';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // implement grid service: will manage cell retrieval and data
   // implement dnd without actually dragging the element (use dataTransfer)
 
   @ViewChild('dropArea') dropArea!: ElementRef;

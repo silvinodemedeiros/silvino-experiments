@@ -5,7 +5,7 @@
     class="content"
   >
     <app-grid-cell
-      *ngFor="let cell of (selectedGrid$ | async).cells"
+      *ngFor="let cell of (gs.selectedGrid$ | async).cells"
       appGridCell
       [gridArea]="cell.area"
       [content]="cell.content"
@@ -29,14 +29,14 @@
 
   <div class="grid-options-list">
     <div
-      *ngFor="let grid of (gridOptions$ | async)"
+      *ngFor="let grid of (gs.grids$ | async)"
       class="option-item grid-options-item"
       [ngClass]="{
         'option-item': true,
         'grid-options-item': true,
-        'active': grid.id === (selectedGrid$ | async).id
+        'active': grid.id === (gs.selectedGrid$ | async).id
       }"
-      (click)="selectGridById(grid.id)"
+      (click)="gs.selectGridById(grid.id)"
     >
       {{ grid.id }}
     </div>

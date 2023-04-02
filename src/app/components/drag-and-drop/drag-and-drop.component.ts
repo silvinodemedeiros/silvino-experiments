@@ -18,8 +18,6 @@ export class DragAndDropComponent implements OnInit {
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
 
-  selectedGridId = 1;
-
   widgetList = [
     {name: 'A'},
     {name: 'B'},
@@ -27,20 +25,15 @@ export class DragAndDropComponent implements OnInit {
     {name: 'D'}
   ];
 
-  get gridOptions$() {
-    return this.gridService.grids$;
-  }
-
-  get selectedGrid$() {
-    return this.gridService.selectedGrid$;
+  get gs() {
+    return this.gridService;
   }
 
   constructor(private gridService: GridService) {
   }
 
   ngOnInit() {
-    this.gridService.initializeGrids();
-    this.gridService.selectGridById(this.selectedGridId);
+    this.gridService.init();
   }
 
   allowDrop(ev) {
@@ -61,10 +54,6 @@ export class DragAndDropComponent implements OnInit {
 
     ev.target.appendChild(widget);
     this.currentlyDragging = null;
-  }
-
-  selectGridById(nextGridId: number) {
-    this.gridService.selectGridById(nextGridId);
   }
 
 }

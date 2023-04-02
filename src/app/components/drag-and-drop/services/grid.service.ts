@@ -46,13 +46,15 @@ export class GridService {
   constructor() {
   }
 
-  initializeGrids() {
+  init() {
     this.grids_$.next(this.grids);
+    this.selectGridById(1);
   }
 
   selectGridById(gid: number) {
-    const selected = this.grids.filter(({id}) => gid === id)[0];
-    this.selectedGrid_$.next(selected);
+    this.selectedGrid_$.next(
+      this.grids.filter(({id}) => gid === id)[0]
+    );
   }
 
 }

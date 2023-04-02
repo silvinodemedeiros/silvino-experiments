@@ -1,41 +1,24 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GridService } from './services/grid.service';
 
 @Component({
   selector: 'app-drag-and-drop',
   templateUrl: './drag-and-drop.component.html',
-  styleUrls: ['./drag-and-drop.component.css']
+  styleUrls: ['./drag-and-drop.component.css'],
+  providers: [
+    GridService
+  ]
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // change grid after click
-  // create cell components
   // implement grid service: will manage cell retrieval and data
-  // create widget components
-  // hotkeys (letters for grids for example idk)
+  // implement dnd without actually dragging the element (use dataTransfer)
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
 
-  gridOptions = [
-    {
-      id: 1,
-      cells: [
-        {content: '', area: '1 / 1 / 2 / 3'},
-        {content: '', area: '2 / 1 / 3 / 2'},
-        {content: '', area: '2 / 2 / 3 / 3'}
-      ]
-    },
-    {
-      id: 2,
-      cells: [
-        {content: '', area: '1 / 1 / 2 / 2'},
-        {content: '', area: '2 / 1 / 3 / 2'},
-        {content: '', area: '1 / 2 / 3 / 3'}
-      ]
-    }
-  ];
-
-  selectedGrid = this.gridOptions[0];
+  selectedGridId = 1;
 
   widgetList = [
     {name: 'A'},
@@ -44,9 +27,20 @@ export class DragAndDropComponent implements OnInit {
     {name: 'D'}
   ];
 
-  constructor() { }
+  get gridOptions$() {
+    return this.gridService.grids$;
+  }
+
+  get selectedGrid$() {
+    return this.gridService.selectedGrid$;
+  }
+
+  constructor(private gridService: GridService) {
+  }
 
   ngOnInit() {
+    this.gridService.initializeGrids();
+    this.gridService.selectGridById(this.selectedGridId);
   }
 
   allowDrop(ev) {
@@ -70,7 +64,7 @@ export class DragAndDropComponent implements OnInit {
   }
 
   selectGridById(nextGridId: number) {
-    this.selectedGrid = this.gridOptions.filter(({id}) => nextGridId === id)[0];
+    this.gridService.selectGridById(nextGridId);
   }
 
 }

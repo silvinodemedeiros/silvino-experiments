@@ -1,5 +1,21 @@
 <div class="wrapper">
-  <div class="sidebar">
+
+  <div
+    #dropArea
+    class="content"
+  >
+    <app-grid-cell
+      *ngFor="let cell of (selectedGrid$ | async).cells"
+      appGridCell
+      [gridArea]="cell.area"
+      [content]="cell.content"
+      (dragover)="allowDrop($event)"
+      (drop)="drop($event)"
+    ></app-grid-cell>
+  </div>
+
+
+  <div class="widget-options">
     <div
       *ngFor="let wi of widgetList"
       class="option-item widget-item"
@@ -11,28 +27,14 @@
     </div>
   </div>
 
-  <div
-    #dropArea
-    class="content"
-  >
-    <app-grid-cell
-      *ngFor="let cell of selectedGrid.cells"
-      appGridCell
-      [gridArea]="cell.area"
-      [content]="cell.content"
-      (dragover)="allowDrop($event)"
-      (drop)="drop($event)"
-    ></app-grid-cell>
-  </div>
-
   <div class="grid-options-list">
     <div
-      *ngFor="let grid of gridOptions"
+      *ngFor="let grid of (gridOptions$ | async)"
       class="option-item grid-options-item"
       [ngClass]="{
         'option-item': true,
         'grid-options-item': true,
-        'active': grid.id === selectedGrid.id
+        'active': grid.id === (selectedGrid$ | async).id
       }"
       (click)="selectGridById(grid.id)"
     >

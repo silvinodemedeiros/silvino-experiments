@@ -22,8 +22,7 @@ import { TimedButtonComponent } from "./timed-button/timed-button.component";
   exports: [
     TimedButtonComponent,
     DragAndDropComponent,
-    GridCellComponent,
-    GridCellDirective
+    GridCellComponent
   ]
 })
 export class ComponentsModule {}

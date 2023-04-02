@@ -5,7 +5,7 @@
 
   display: grid;
   grid-template-rows: 1fr 5rem 3rem;
-  grid-template-areas: "content" "sidebar" "grid-options";
+  grid-template-areas: "content" "widget-options" "grid-options";
   gap: .5rem;
 }
 
@@ -23,8 +23,8 @@
   background: darkblue;
 }
 
-.sidebar {
-  grid-area: sidebar;
+.widget-options {
+  grid-area: widget-options;
   display: flex;
   justify-content: space-evenly;
   gap: .5rem;

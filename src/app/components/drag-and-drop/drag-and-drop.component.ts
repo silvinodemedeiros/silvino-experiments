@@ -11,7 +11,8 @@ import { GridService } from './services/grid.service';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // implement dnd without actually dragging the element (use dataTransfer)
+  // implements ngOnDestroy
+  // widget CRUD
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
@@ -50,7 +51,7 @@ export class DragAndDropComponent implements OnInit {
       ev.target.removeChild(ev.target.lastChild);
     }
 
-    ev.target.appendChild(widget);
+    ev.target.appendChild(widget.cloneNode(true));
     this.currentlyDragging = null;
   }
 

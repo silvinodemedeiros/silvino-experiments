@@ -21,10 +21,10 @@
       *ngFor="let wi of widgetList"
       class="option-item widget-item"
       draggable="true"
-      [id]="wi.name"
+      [id]="wi.title"
       (dragstart)="drag($event)"
     >
-      {{ wi.name }}
+      {{ wi.title }}
     </div>
   </div>
 

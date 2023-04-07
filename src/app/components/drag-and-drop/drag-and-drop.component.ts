@@ -11,7 +11,8 @@ import { GridService } from './services/grid.service';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // store grid data on service
+  // store widget on cell (through data) (intially with pure html)
+  // store widget but now with components instead of pure html
   // implements ngOnDestroy
   // widget CRUD
   // extract selectedGrid from the GridService into a new DragAndDropService
@@ -20,10 +21,10 @@ export class DragAndDropComponent implements OnInit {
   currentlyDragging = null;
 
   widgetList = [
-    {name: 'A'},
-    {name: 'B'},
-    {name: 'C'},
-    {name: 'D'}
+    {title: 'A'},
+    {title: 'B'},
+    {title: 'C'},
+    {title: 'D'}
   ];
 
   get gs() {
@@ -53,13 +54,10 @@ export class DragAndDropComponent implements OnInit {
       ev.target.removeChild(ev.target.lastChild);
     }
 
-    ev.target.appendChild(widget.cloneNode(true));
-
-    // insert widget on service model
-    // emit new model
     // this.gs.assignWidgetToCell(this.currentlyDragging, ev.target);
     console.log(this.currentlyDragging, ev.target);
     this.currentlyDragging = null;
+    ev.target.appendChild(widget.cloneNode(true));
   }
 
 }

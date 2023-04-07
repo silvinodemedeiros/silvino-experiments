@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "../material.module";
+import { GridCellWidgetComponent } from "./drag-and-drop/components/grid-cell/grid-cell-widget/grid-cell-widget.component";
 import { GridCellComponent } from "./drag-and-drop/components/grid-cell/grid-cell.component";
 import { DragAndDropComponent } from "./drag-and-drop/drag-and-drop.component";
 import { GridCellDirective } from "./drag-and-drop/grid-cell.directive";
@@ -17,12 +18,14 @@ import { TimedButtonComponent } from "./timed-button/timed-button.component";
     TimedButtonComponent,
     DragAndDropComponent,
     GridCellComponent,
-    GridCellDirective
+    GridCellDirective,
+    GridCellWidgetComponent
   ],
   exports: [
     TimedButtonComponent,
     DragAndDropComponent,
-    GridCellComponent
+    GridCellComponent,
+    GridCellWidgetComponent
   ]
 })
 export class ComponentsModule {}

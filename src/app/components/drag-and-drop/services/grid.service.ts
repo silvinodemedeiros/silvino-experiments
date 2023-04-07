@@ -19,28 +19,21 @@ export class GridService {
     {
       id: 1,
       cells: [
-        {content: '', area: '1 / 1 / 2 / 3'},
-        {content: '', area: '2 / 1 / 3 / 2'},
-        {content: '', area: '2 / 2 / 3 / 3'}
+        {id: 1, content: '', area: '1 / 1 / 2 / 3'},
+        {id: 2, content: '', area: '2 / 1 / 3 / 2'},
+        {id: 3, content: '', area: '2 / 2 / 3 / 3'}
       ],
       data: {}
     },
     {
       id: 2,
       cells: [
-        {content: '', area: '1 / 1 / 2 / 2'},
-        {content: '', area: '2 / 1 / 3 / 2'},
-        {content: '', area: '1 / 2 / 3 / 3'}
+        {id: 1, content: '', area: '1 / 1 / 2 / 2'},
+        {id: 2, content: '', area: '2 / 1 / 3 / 2'},
+        {id: 3, content: '', area: '1 / 2 / 3 / 3'}
       ],
       data: {}
     }
-  ];
-
-  widgets = [
-    {name: 'A'},
-    {name: 'B'},
-    {name: 'C'},
-    {name: 'D'}
   ];
 
   constructor() {
@@ -55,6 +48,10 @@ export class GridService {
     this.selectedGrid_$.next(
       this.grids.filter(({id}) => gid === id)[0]
     );
+  }
+
+  insertWidget(widgetData: any, cellId: number, gridId: number) {
+    this.grid
   }
 
 }

@@ -9,8 +9,9 @@
       appGridCell
       [gridArea]="cell.area"
       [content]="cell.content"
+      [widget]="cell.data.widget"
       (dragover)="allowDrop($event)"
-      (drop)="drop($event)"
+      (drop)="drop($event, cell.id, (gs.selectedGrid$ | async).id)"
     >
     </app-grid-cell>
   </div>

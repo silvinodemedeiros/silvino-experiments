@@ -11,7 +11,6 @@ import { GridService } from './services/grid.service';
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // --> // store widget on service
   // implements ngOnDestroy
   // widget CRUD
   // extract selectedGrid from the GridService into a new DragAndDropService
@@ -35,8 +34,6 @@ export class DragAndDropComponent implements OnInit {
 
   ngOnInit() {
     this.gridService.init();
-
-    this.gs.selectedGrid$.subscribe(console.log);
   }
 
   allowDrop(ev) {
@@ -62,7 +59,6 @@ export class DragAndDropComponent implements OnInit {
 
     this.currentlyDragging = null;
     this.gs.insertWidget(widgetData, cellId, gridId);
-    // ev.target.appendChild(widget.cloneNode(true));
   }
 
 }

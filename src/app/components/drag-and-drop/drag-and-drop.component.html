@@ -3,26 +3,25 @@
   <div
     #dropArea
     class="content"
+    *ngIf="(gs.selectedGrid$ | async) as selectedGrid"
   >
     <app-grid-cell
-      *ngFor="let cell of (gs.selectedGrid$ | async).cells"
+      *ngFor="let cell of selectedGrid.cells"
       appGridCell
       [gridArea]="cell.area"
-      [content]="cell.content"
-      [widget]="cell.data.widget"
+      [widget]="cell.widget"
       (dragover)="allowDrop($event)"
-      (drop)="drop($event, cell.id, (gs.selectedGrid$ | async).id)"
+      (drop)="drop($event, cell.id, selectedGrid.id)"
     >
     </app-grid-cell>
   </div>
-
 
   <div class="widget-options">
     <div
       *ngFor="let wi of widgetList"
       class="option-item widget-item"
       draggable="true"
-      [id]="wi.title"
+      [id]="wi.id"
       (dragstart)="drag($event)"
     >
       {{ wi.title }}

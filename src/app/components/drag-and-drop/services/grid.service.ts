@@ -51,7 +51,7 @@ export class GridService {
   }
 
   insertWidget(widgetData: any, cellId: number, gridId: number) {
-    this.grid
+    console.log(widgetData, cellId, gridId);
   }
 
 }

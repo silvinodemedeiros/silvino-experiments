@@ -43,14 +43,16 @@ export class DragAndDropComponent implements OnInit {
   
   drag(ev) {
     this.currentlyDragging = ev.target;
-    const widgetData = this.widgetList.filter(({id}) => id === ev.target.id)[0];
-    ev.dataTransfer.setData('widget-data', widgetData);
+    const widgetData = this.widgetList.filter(({id}) => {
+      return id.toString() === ev.target.id.toString();
+    });
+    ev.dataTransfer.setData('widget-data', JSON.stringify(widgetData));
   }
   
   drop(ev, cellId: number, gridId: number) {
     ev.preventDefault();
     const widget = this.currentlyDragging;
-    const widgetData = ev.dataTransfer.getData('widget-data');
+    const widgetData = JSON.parse(ev.dataTransfer.getData('widget-data'));
 
     while(ev.target.lastChild) {
       ev.target.removeChild(ev.target.lastChild);
@@ -58,6 +60,7 @@ export class DragAndDropComponent implements OnInit {
 
     this.currentlyDragging = null;
     this.gs.insertWidget(widgetData, cellId, gridId);
+    ev.target.appendChild(widget.cloneNode(true));
   }
 
 }

@@ -35,6 +35,8 @@ export class DragAndDropComponent implements OnInit {
 
   ngOnInit() {
     this.gridService.init();
+
+    this.gs.selectedGrid$.subscribe(console.log);
   }
 
   allowDrop(ev) {
@@ -45,7 +47,7 @@ export class DragAndDropComponent implements OnInit {
     this.currentlyDragging = ev.target;
     const widgetData = this.widgetList.filter(({id}) => {
       return id.toString() === ev.target.id.toString();
-    });
+    })[0];
     ev.dataTransfer.setData('widget-data', JSON.stringify(widgetData));
   }
   
@@ -60,7 +62,7 @@ export class DragAndDropComponent implements OnInit {
 
     this.currentlyDragging = null;
     this.gs.insertWidget(widgetData, cellId, gridId);
-    ev.target.appendChild(widget.cloneNode(true));
+    // ev.target.appendChild(widget.cloneNode(true));
   }
 
 }

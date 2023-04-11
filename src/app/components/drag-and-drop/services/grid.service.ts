@@ -19,20 +19,18 @@ export class GridService {
     {
       id: 1,
       cells: [
-        {id: 1, content: '', area: '1 / 1 / 2 / 3'},
-        {id: 2, content: '', area: '2 / 1 / 3 / 2'},
-        {id: 3, content: '', area: '2 / 2 / 3 / 3'}
-      ],
-      data: {}
+        {id: 1, widget: null, area: '1 / 1 / 2 / 3'},
+        {id: 2, widget: null, area: '2 / 1 / 3 / 2'},
+        {id: 3, widget: null, area: '2 / 2 / 3 / 3'}
+      ]
     },
     {
       id: 2,
       cells: [
-        {id: 1, content: '', area: '1 / 1 / 2 / 2'},
-        {id: 2, content: '', area: '2 / 1 / 3 / 2'},
-        {id: 3, content: '', area: '1 / 2 / 3 / 3'}
-      ],
-      data: {}
+        {id: 1, widget: null, area: '1 / 1 / 2 / 2'},
+        {id: 2, widget: null, area: '2 / 1 / 3 / 2'},
+        {id: 3, widget: null, area: '1 / 2 / 3 / 3'}
+      ]
     }
   ];
 
@@ -51,7 +49,29 @@ export class GridService {
   }
 
   insertWidget(widgetData: any, cellId: number, gridId: number) {
-    console.log(widgetData, cellId, gridId);
+
+    this.grids = this.grids.map(grid => {
+      if (grid.id === gridId) {
+        return {
+          ...grid,
+          cells: grid.cells.map(cell => {
+            if (cell.id === cellId) {
+              return {
+                ...cell,
+                widget: widgetData
+              }
+            }
+
+            return cell;
+          })
+        }
+      }
+
+      return grid;
+    });
+
+    this.grids_$.next(this.grids);
+    this.selectGridById(gridId);
   }
 
 }

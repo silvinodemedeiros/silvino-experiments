@@ -13,8 +13,10 @@ export class DragAndDropComponent implements OnInit {
   // TODO
   // implements ngOnDestroy
   // implements widget service
-  // widget CRUD
+  // widget creation, update, read and delete
   // extract selectedGrid from the GridService into a new DragAndDropService
+  // implement transition state (loading, )
+  // implement data services
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;

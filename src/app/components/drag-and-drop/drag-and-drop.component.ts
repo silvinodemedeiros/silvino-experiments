@@ -12,6 +12,7 @@ import { GridService } from './services/grid.service';
 export class DragAndDropComponent implements OnInit {
   // TODO
   // implements ngOnDestroy
+  // implements widget service
   // widget CRUD
   // extract selectedGrid from the GridService into a new DragAndDropService
 

@@ -19,4 +19,15 @@
 
 .grid-cell-header {
   grid-area: header;
+  background: red;
+}
+
+.grid-cell-options {
+  grid-area: header-options;
+  background: green;
+}
+
+.grid-cell-content {
+  grid-area: content;
+  background: pink;
 }

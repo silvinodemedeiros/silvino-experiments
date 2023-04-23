@@ -42,6 +42,11 @@ export class GridService {
     this.selectGridById(1);
   }
 
+  destroy() {
+    this.grids_$.complete();
+    this.selectedGrid_$.complete();
+  }
+
   selectGridById(gid: number) {
     this.selectedGrid_$.next(
       this.grids.filter(({id}) => gid === id)[0]

@@ -39,6 +39,10 @@ export class DragAndDropComponent implements OnInit {
     this.gridService.init();
   }
 
+  ngOnDestroy() {
+    this.gs.destroy();
+  }
+
   allowDrop(ev) {
     ev.preventDefault();
   }

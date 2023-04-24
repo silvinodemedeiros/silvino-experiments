@@ -1,17 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GridService } from './services/grid.service';
+import { WidgetService } from './services/widget.service';
 
 @Component({
   selector: 'app-drag-and-drop',
   templateUrl: './drag-and-drop.component.html',
   styleUrls: ['./drag-and-drop.component.css'],
   providers: [
-    GridService
+    GridService,
+    WidgetService
   ]
 })
 export class DragAndDropComponent implements OnInit {
   // TODO
-  // implements ngOnDestroy
   // implements widget service
   // widget creation, update, read and delete
   // extract selectedGrid from the GridService into a new DragAndDropService
@@ -21,18 +22,18 @@ export class DragAndDropComponent implements OnInit {
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
 
-  widgetList = [
-    {id: 1, title: 'A'},
-    {id: 2, title: 'B'},
-    {id: 3, title: 'C'},
-    {id: 4, title: 'D'}
-  ];
+  get widgetList$() {
+    return this.widgetService.widgetList$;
+  }
 
   get gs() {
     return this.gridService;
   }
 
-  constructor(private gridService: GridService) {
+  constructor(
+    private gridService: GridService,
+    private widgetService: WidgetService
+  ) {
   }
 
   ngOnInit() {

@@ -18,7 +18,7 @@
 
   <div class="widget-options">
     <div
-      *ngFor="let wi of widgetList"
+      *ngFor="let wi of (widgetList$ | async)"
       class="option-item widget-item"
       draggable="true"
       [id]="wi.id"

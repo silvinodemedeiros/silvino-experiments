@@ -22,7 +22,7 @@
       class="option-item widget-item"
       draggable="true"
       [id]="wi.id"
-      (dragstart)="drag($event)"
+      (dragstart)="drag($event, wi)"
     >
       {{ wi.title }}
     </div>

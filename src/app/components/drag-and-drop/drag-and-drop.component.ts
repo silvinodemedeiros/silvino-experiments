@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GridService } from './services/grid.service';
 import { WidgetService } from './services/widget.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -21,6 +22,8 @@ export class DragAndDropComponent implements OnInit {
 
   @ViewChild('dropArea') dropArea!: ElementRef;
   currentlyDragging = null;
+
+  subscription = new Subscription();
 
   get widgetList$() {
     return this.widgetService.widgetList$;
@@ -48,11 +51,7 @@ export class DragAndDropComponent implements OnInit {
     ev.preventDefault();
   }
   
-  drag(ev) {
-    this.currentlyDragging = ev.target;
-    const widgetData = this.widgetList.filter(({id}) => {
-      return id.toString() === ev.target.id.toString();
-    })[0];
+  drag(ev: any, widgetData: any) {
     ev.dataTransfer.setData('widget-data', JSON.stringify(widgetData));
   }
   

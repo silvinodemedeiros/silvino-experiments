@@ -61,7 +61,7 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     const sub = mouseHold$.pipe(mergeWith(mouseEnd$)).subscribe(
-      (val) => {
+      (val: number) => {
         if (val >= 0 && val < this.upperBound) {
           this.spinnerValue = val;
           this.spinnerValue$.next(val);

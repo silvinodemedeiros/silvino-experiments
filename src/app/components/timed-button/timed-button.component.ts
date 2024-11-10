@@ -33,7 +33,7 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     const button = this.timedButton.nativeElement;
 
-    const mouseEnd$ = fromEvent(button, 'mouseleave').pipe(
+    const decrement$ = fromEvent(button, 'mouseleave').pipe(
       mergeWith(fromEvent(button, 'mouseup')),
       switchMap(() =>
         interval(this.intervalRate).pipe(
@@ -42,12 +42,12 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
               ? (this.spinnerValue -= this.progressIncrement)
               : (this.spinnerValue = 0)
           ),
-          takeUntil(mouseHold$)
+          takeUntil(increment$)
         )
       )
     );
 
-    const mouseHold$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
+    const increment$ = fromEvent<MouseEvent>(button, 'mousedown').pipe(
       switchMap(() =>
         interval(this.intervalRate).pipe(
           map(() =>
@@ -55,12 +55,12 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
               ? (this.spinnerValue += this.progressIncrement)
               : (this.spinnerValue = this.upperBound)
           ),
-          takeUntil(mouseEnd$)
+          takeUntil(decrement$)
         )
       )
     );
 
-    const sub = mouseHold$.pipe(mergeWith(mouseEnd$)).subscribe(
+    const sub = increment$.pipe(mergeWith(decrement$)).subscribe(
       (val: number) => {
         if (val >= 0 && val < this.upperBound) {
           this.spinnerValue = val;

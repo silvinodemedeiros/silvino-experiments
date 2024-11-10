@@ -63,7 +63,6 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
     const sub = increment$.pipe(mergeWith(decrement$)).subscribe(
       (val: number) => {
         if (val >= 0 && val < this.upperBound) {
-          this.spinnerValue = val;
           this.spinnerValue$.next(val);
         } else if (val === this.upperBound) {
           this.progressComplete$.next(true)
@@ -72,6 +71,12 @@ export class TimedButtonComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     this.sub.add(sub);
+  }
+
+  reset() {
+    this.spinnerValue = 0;
+    this.spinnerValue$.next(0);
+    this.progressComplete$.next(false);
   }
 
   ngOnDestroy() {
